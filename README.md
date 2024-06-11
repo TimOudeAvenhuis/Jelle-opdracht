@@ -16,3 +16,6 @@
 # If you add relations to you database migrations in then you make a new table: add_relations_to_[name_of_table]_table
 # How to make a relation with a other table? use in the Model: HasOne / HasMany / HasOneThrough / HasManyThrough
 # you have to youse for the other table: BelogsTo
+
+
+# php artisan make:factory
