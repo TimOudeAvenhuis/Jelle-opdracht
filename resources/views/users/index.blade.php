@@ -47,12 +47,12 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role->role_name }}</td>
                                         <td>
-                                            ('update user')
+                                            
                                                 <a href="{{ Route('user@edit', $user->id)}}"
                                                     class="btn btn-success">Edit</a>
                                             
 
-                                            ('delete user')
+                                           
                                                 <a href="{{ Route('user@destroy', $user->id) }}"
                                                     class="btn btn-danger mx-2">Delete</a>
                                             

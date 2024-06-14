@@ -49,6 +49,7 @@
                                 @error('dob')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
+                            </div>
                             <div class="mb-3">
                                 <label for="">Password</label>
                                 <input type="text" name="password" class="form-control" />
