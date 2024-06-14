@@ -63,7 +63,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'nullable|string|max:255',
             'content' => 'nullable|string',
-            'username' => 'nullable'
+            'user_id' => 'nullable'
         ]);
         // Dont save stuff as empty, do not update those fields
         $dataToUpdate = array_filter($validatedData, function ($value) {

@@ -25,3 +25,7 @@ Route::get('/posts/{id}/delete', 'App\Http\Controllers\PostController@destroy')-
 // Comments
 Route::get('/comments', 'App\Http\Controllers\CommentController@read')->name('comment@read');
 Route::get('/comments/new', 'App\Http\Controllers\CommentController@create')->name('comment@create');
+Route::post('/comments/create', 'App\Http\Controllers\CommentController@store')->name('comment@store');
+Route::get('/comments/{id}/edit', 'App\Http\Controllers\CommentController@edit')->name('comment@edit');
+Route::put('/comments/{id}/update', 'App\Http\Controllers\CommentController@update')->name('comment@update');
+Route::get('/comments/{id}/delete', 'App\Http\Controllers\CommentController@destroy')->name('comment@destroy');
