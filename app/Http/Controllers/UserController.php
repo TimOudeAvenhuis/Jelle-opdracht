@@ -89,18 +89,12 @@ class UserController extends Controller
 
     public function destroy($userId)
     {
-        // Check if a user is logged in and if they are trying to delete themselves
-        if (Auth::check() && Auth::user()->id == $userId) {
-            abort(403, 'You are not able to delete yourself.');
-        } else {
-            $user = User::find($userId);
-            if ($user) {
-                // Delete all comments of the user
-                $user->comment()->delete();
-                // Then delete the user
-                $user->delete();
-            }
-            return redirect()->back();
-        }
+        $user = User::find($userId);
+
+        // Then delete the user
+        $user->delete();
+
+        return redirect()->back();
+
     }
 }

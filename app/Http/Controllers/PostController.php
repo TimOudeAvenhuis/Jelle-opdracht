@@ -81,12 +81,9 @@ class PostController extends Controller
     {
 
         $post = Post::find($postId);
-        if ($post) {
-            // Delete all comments of the Post
-            $post->comment()->delete();
-            // Then delete the user
-            $post->delete();
-        }
+        // Then delete the user
+        $post->delete();
+
         return redirect()->back();
     }
 }
