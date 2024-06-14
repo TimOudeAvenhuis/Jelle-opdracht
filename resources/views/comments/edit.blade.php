@@ -16,25 +16,18 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Edit User
-                            <a href="{{ url('posts') }}" class="btn btn-danger float-end">Back</a>
+                        <h4>Edit Comment
+                            <a href="{{ url('comment') }}" class="btn btn-danger float-end">Back</a>
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('post@update', ['id' => $post->id]) }}" method="POST">
+                        <form action="{{ route('comment@update', ['id' => $comment->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
 
                             <div class="mb-3">
-                                <label for="">Title</label>
-                                <input type="text" name="title" placeholder="{{ $post->title }}" class="form-control" />
-                                @error('title')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="">Content</label>
-                                <input type="text" name="content" placeholder="{{ $post->content }}" class="form-control" />
+                                <label for="">content</label>
+                                <input type="text" name="content" placeholder="{{ $comment->content }}" class="form-control" />
                                 @error('content')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -43,7 +36,7 @@
                                 <label for="">Username</label>
                                 <select name="user_id" class="form-control">
                                     @foreach ($users as $user)
-                                        <option value="{{ $user->id }}" @if ($user->id == $post->user_id) selected @endif>
+                                        <option value="{{ $user->id }}" @if ($user->id == $comment->post_id) selected @endif>
                                             {{ $user->username }}
                                         </option>
                                     @endforeach
@@ -51,6 +44,20 @@
                                 @error('content')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Title</label>
+                                <select name="post_id" class="form-control">
+                                    @foreach ($posts as $post)
+                                        <option value="{{ $post->id }}" @if ($post->id == $comment->post_id) selected @endif>
+                                            {{ $post->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('content')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
