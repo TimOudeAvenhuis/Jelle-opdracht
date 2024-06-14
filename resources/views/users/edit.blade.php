@@ -27,25 +27,25 @@
 
                             <div class="mb-3">
                                 <label for="">Name</label>
-                                <input type="text" name="name" value="{{ $user->name }}" class="form-control" />
+                                <input type="text" name="name" placeholder="{{ $user->name }}" class="form-control" />
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="">Username</label>
-                                <input type="text" name="username" value="{{ $user->username }}" class="form-control" />
+                                <input type="text" name="username" placeholder="{{ $user->username }}" class="form-control" />
                                 @error('username')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             <div class="mb-3">
                                 <label for="">Email</label>
-                                <input type="text" name="email" value="{{ $user->email }}"
+                                <input type="text" name="email" placeholder="{{ $user->email }}"
                                     class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label for="">Date of Birth</label>
-                                <input type="date" name="dob" value="{{ $user->dob }}" class="form-control" />
+                                <input type="date" name="dob" placeholder="{{ $user->dob }}" class="form-control" />
                                 @error('dob')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -58,7 +58,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">Role</label>
-                                <select name="role" class="form-control">
+                                <select name="role_id" class="form-control">
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->id }}" @if ($role->id == $user->role_id) selected @endif>
                                             {{ $role->role_name }}

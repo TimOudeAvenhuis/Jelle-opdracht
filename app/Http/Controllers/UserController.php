@@ -59,33 +59,30 @@ class UserController extends Controller
 
     public function update(Request $request, $userId)
     {
-        $user = User::find($userId);
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username',
-            'dob' => 'required|date',
-            'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|max:20',
-            'role' => 'required'
+
+        // Check if request is emtpy, then cancel
+        if (empty(request()->all())) {
+            abort(400, 'Missing required fields.');
+        }
+        // Allow empty in validation rules
+        $validatedData = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'username' => 'nullable|string|max:255|unique:users,username,' . $userId,
+            'dob' => 'nullable|date',
+            'email' => 'nullable|email|unique:users,email,' . $userId,
+            'password' => 'nullable|string|min:8|max:20',
+            'role_id' => 'nullable'
         ]);
 
-        $data = [
-            'name' => $request->name,
-            'username' => $request->username,
-            'date_of_birth' => $request->dob,
-            'email' => $request->email,
-            'role_id' => $request->role,
-            'password' => Hash::make($request->password),
-        ];
+        // Dont save stuff as empty, do not update those fields
+        $dataToUpdate = array_filter($validatedData, function ($value) {
+            return ($value !== null);
+        });
 
-        if (!empty($request->password)) {
-            $data += [
-                'password' => Hash::make($request->password),
-            ];
-        }
 
-        $user->update($data);
+        $user = User::find($userId);
+        $user->update($dataToUpdate);
 
         return redirect('/users');
     }

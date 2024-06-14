@@ -20,7 +20,7 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         <h4>Users
-                            ('create user')
+                            
                                 <a href="{{ Route('user@create') }}" class="btn btn-primary float-end">Add User</a>
                             
                         </h4>
