@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -61,6 +62,15 @@ class DatabaseSeeder extends Seeder
                         )
                     )
             )
+        ->has(
+            Like::factory()
+                ->count(3)
+                ->state(
+                    new Sequence(
+                        fn () => ['user_id' => User::all()->random()]
+                    )
+                )
+        )
             ->create();
 
     }
