@@ -15,7 +15,7 @@ class UserController extends Controller
         $users = User::all();
 
 
-        return view('users.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     public function create()
@@ -23,7 +23,10 @@ class UserController extends Controller
 
         // dd($request->all());
         $roles = Role::all();
-        return view('users.create', ['roles' => $roles]);
+        return view(
+            'admin.users.create',
+            ['roles' => $roles]
+        );
     }
 
     public function store(Request $request)
@@ -47,14 +50,14 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect('/users');
+        return redirect(route('user@read'));
     }
 
     public function edit($userId)
     {
         $user = User::find($userId);
         $roles = Role::all();
-        return view('users.edit', ['user' => $user, 'roles' => $roles]);
+        return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update(Request $request, $userId)
@@ -84,7 +87,7 @@ class UserController extends Controller
         $user = User::find($userId);
         $user->update($dataToUpdate);
 
-        return redirect('/users');
+        return redirect(route('user@read'));
     }
 
     public function destroy($userId)

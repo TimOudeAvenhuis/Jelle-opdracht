@@ -14,14 +14,14 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('posts.index', ['posts' => $posts]);
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 
     public function create()
     {
         $users = User::all();
         $roles = Role::all();
-        return view('posts.create', ['roles' => $roles, 'users' => $users]);
+        return view('admin.posts.create', ['roles' => $roles, 'users' => $users]);
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class PostController extends Controller
             'user_id' => $request->username,
         ]);
 
-        return redirect('/posts');
+        return redirect(route('post@read'));
     }
 
     public function edit($postId)
@@ -48,7 +48,7 @@ class PostController extends Controller
 
         $users = User::all();
         // dd($users);
-        return view('posts.edit', ['post' => $post, 'users' => $users]);
+        return view('admin.posts.edit', ['post' => $post, 'users' => $users]);
     }
 
     public function update(Request $request, $postId)
@@ -74,7 +74,7 @@ class PostController extends Controller
         $post = Post::find($postId);
         $post->update($dataToUpdate);
 
-        return redirect('/posts');
+        return redirect(route('post@read'));
     }
 
     public function destroy($postId)

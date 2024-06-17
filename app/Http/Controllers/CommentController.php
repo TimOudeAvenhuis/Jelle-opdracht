@@ -14,14 +14,14 @@ class CommentController extends Controller
         $comments = Comment::all();
         // dd($comments->role);
 
-        return view('comments.index', ['comments' => $comments]);
+        return view('admin.comments.index', ['comments' => $comments]);
     }
 
     public function create()
     {
         $users = User::all();
         $posts = Post::all();
-        return view('comments.create', ['users' => $users, 'posts' => $posts]);
+        return view('admin.comments.create', ['users' => $users, 'posts' => $posts]);
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class CommentController extends Controller
             'post_id' => $request->title,
         ]);
 
-        return redirect('/comments');
+        return redirect(route('comment@read'));
     }
 
     public function edit($commentId)
@@ -47,7 +47,7 @@ class CommentController extends Controller
         $comment = Comment::find($commentId);
         $users = User::all();
         $posts = Post::all();
-        return view('comments.edit', ['comment' => $comment, 'users' => $users, 'posts' => $posts]);
+        return view('admin.comments.edit', ['comment' => $comment, 'users' => $users, 'posts' => $posts]);
     }
 
     public function update(Request $request, $commentId)
@@ -70,7 +70,7 @@ class CommentController extends Controller
         $comment = Comment::find($commentId);
         $comment->update($dataToUpdate);
 
-        return redirect('/comments');
+        return redirect(route('comment@read'));
     }
 
 
